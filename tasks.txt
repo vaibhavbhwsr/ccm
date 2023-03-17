@@ -1,0 +1,2 @@
+# Pendings
+- on update profile page need to retrieve data for releated fields

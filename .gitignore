@@ -1,0 +1,21 @@
+local_settings.py
+local.py
+*/media/
+**/migrations/
+*/staticfiles/
+**/images/
+*.pyc
+settings.ini
+
+# Editor environment
+mysite.sublime-project
+mysite.sublime-workspace
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+.idea/
+

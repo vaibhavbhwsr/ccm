@@ -1,0 +1,35 @@
+<header class="header bg-black">
+
+  <div class="grid">
+
+    <div class="logo">
+      <a href="{% url 'home' %}">CCM</a>
+    </div>
+
+    <input type="checkbox" class="navigationCheckbox" id="navi">
+    <label for="navi" class="navigationBtn">
+      <span class="navigationIcon"></span>
+    </label>
+
+    <nav class="menu bg-black">
+      <div class="menu-item">
+        {% if user.is_authenticated %}
+        {% if user.user_info.user_type == "Lawyer" %}
+        <a href="{% url 'home' %}" class="liens">Dashboard</a>
+        <a href="{% url 'my_client_list' %}" class="liens">Clients</a>
+        <a href="{% url 'lawyers' %}" class="liens">Lawyers</a>
+        {% endif %}
+        <a href="{% url 'cases' %}" class="liens">Cases</a>
+        <a href="{% url 'profile' %}" class="liens">Profile</a>
+        <a class="liens" href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+        <a class="liens" href="{% url 'login' %}">Log In</a>
+        <a class="liens" href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+
+      </div>
+
+    </nav>
+  </div>
+
+</header>

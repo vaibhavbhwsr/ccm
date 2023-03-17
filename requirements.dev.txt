@@ -1,0 +1,31 @@
+-r requirements.txt
+
+# Admin
+django-jazzmin
+
+# Main
+Django>=3.2.6
+psycopg2-binary
+python-decouple
+
+# Deployment
+gunicorn
+
+# Others
+django-cleanup
+django-crispy-forms
+crispy-bootstrap5
+Pillow
+
+# Clean Coding
+flake8
+isort
+black
+
+# Development tools
+django-debug-toolbar
+django-extensions
+ipython
+
+# Other required
+backports.zoneinfo;python_version<"3.9"
