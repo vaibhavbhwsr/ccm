@@ -13,7 +13,7 @@ from django.db.models import Q
 
 
 @method_decorator(login_required, name='dispatch')
-class DashboardView(TemplateView, ListView):
+class DashboardView(ListView):
     ''' Dashboard View '''
     model = Case
     template_name = 'core/dashboard.html'

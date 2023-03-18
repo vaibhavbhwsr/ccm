@@ -1,31 +1,40 @@
 {% extends 'core/dashboard.html' %}
 
 {% block title %} Cases {% endblock %}
+{% block extra_css %}
+<style>
+.table {
+  font-size: 18px; /* adjust the size to your preference */
+}
+</style>
+{% endblock extra_css %}
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Image</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Speciality</th>
-      <th scope="col">Billing Rate</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for lawyer in lawyers %}
-    <tr>
-      <th scope="row">{{ lawyer.id }}</th>
-      <td>{{ lawyer.image.url }}</td>
-      <td>{{ lawyer.first_name }}</td>
-      <td>{{ lawyer.last_name }}</td>
-      <td>{{ lawyer.email }}</td>
-      <td>{{ lawyer.user_info.speciality }}</td>
-      <td>{{ lawyer.user_info.billing_rate }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-11 col-md-11 col-lg-8">
+    <h1 class="text-center">Lawyers</h1>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Speciality</th>
+          <th scope="col">Billing Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lawyer in lawyers %}
+        <tr>
+          <td>{{ lawyer.first_name }}</td>
+          <td>{{ lawyer.last_name }}</td>
+          <td>{{ lawyer.email }}</td>
+          <td>{{ lawyer.user_info.speciality }}</td>
+          <td>{{ lawyer.user_info.billing_rate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock content %}

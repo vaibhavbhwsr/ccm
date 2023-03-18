@@ -1,31 +1,42 @@
 {% extends 'core/dashboard.html' %}
+{% load debug %}
+{% load core_extra %}
 
 {% block title %} My clients {% endblock %}
+{% block extra_css %}
+<style>
+.table {
+  font-size: 18px; /* adjust the size to your preference */
+}
+</style>
+{% endblock extra_css %}
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Image</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Cases</th>
-      <th scope="col">Billed</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for client in clients %}
-    <tr>
-      <th scope="row">{{ client.id }}</th>
-      <td>{{ client.image.url }}</td>
-      <td>{{ client.first_name }}</td>
-      <td>{{ client.last_name }}</td>
-      <td>{{ client.email }}</td>
-      <td>999</td>
-      <td>999999</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-11 col-md-11 col-lg-8">
+    <h1 class="text-center">Your Clients</h1>
+    <hr>
+    <table class="table my-custom-table">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Cases</th>
+          <th scope="col">Billed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in clients %}
+        <tr>
+          <td>{{ client.first_name }}</td>
+          <td>{{ client.last_name }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client|get_cases_counts:user }}</td>
+          <td>{{ client|get_client_total_bill:user }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock content %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load debug %}
 {% block title %}Hello! {{ user | capfirst }}{% endblock %}
 {% block extra_css %}
 <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen">
@@ -8,40 +9,76 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-sm-11 col-md-11 col-lg-11">
-      <center>
-        <h1>Quick Overview</h1>
-        <h4>Quick overview of all the cases and their status.</h4>
-        <hr>
-        <h2> Cases </h2>
-        <div class="card-group">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Category</h3>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
+      <h1 class="text-center">Quick Overview</h1>
+      <h4 class="text-center">Quick overview of all the cases and their status.</h4>
+      <hr>
+      <h2 class="text-center"> Cases </h2>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Further Action Needed</h3>
+            <hr>
+            {% for case in cases %}
+            {% if case.case_status == "Further Action Needed" and case.lawyer == user %}
+            <h5 class="card-title">{{ forloop.counter }}. {{ case.name }}</h5>
+            <p class="card-text">{{ case.detail }}</p>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
-      </center>
-    </div>
-    {% comment %}<div class="text-center">
-      <span class="step-links">
-        {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
-        {% endif %}
-        <span class="current">
-          {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Processing</h3>
+            <hr>
+            {% for case in cases %}
+            {% if case.case_status == "Processing" and case.lawyer == user %}
+            <h5 class="card-title">{{ forloop.counter }}. {{ case.name }}</h5>
+            <p class="card-text">{{ case.detail }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Disposition Date Set</h3>
+            <hr>
+            {% for case in cases %}
+            {% if case.case_status == "Disposition Date Set" and case.lawyer == user %}
+            <h5 class="card-title">{{ case.name }}</h5>
+            <p class="card-text">{{ case.detail }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Hearing Date Set</h3>
+            <hr>
+            {% for case in cases %}
+            {% if case.case_status == "Trial date pending" and case.lawyer == user %}
+            <h5 class="card-title">{{ case.name }}</h5>
+            <p class="card-text">{{ case.detail }}</p>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% comment %}<div class="text-center">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
+          {% endif %}
+          <span class="current">
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}"> &raquo;</a>
+          {% endif %}
         </span>
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}"> &raquo;</a>
-        {% endif %}
-      </span>
-    </div>{% endcomment %}
+      </div>{% endcomment %}
+    </div>
   </div>
-</div>
-{% endblock content%}
-{% block extra_js %}
-<script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
-{% endblock extra_js %}
+  {% endblock content%}
+  {% block extra_js %}
+  <script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
+  {% endblock extra_js %}

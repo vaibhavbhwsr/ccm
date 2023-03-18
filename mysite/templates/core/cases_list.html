@@ -1,33 +1,46 @@
 {% extends 'core/dashboard.html' %}
 
 {% block title %} Cases {% endblock %}
+{% block extra_css %}
+<style>
+.table {
+  font-size: 18px; /* adjust the size to your preference */
+}
+</style>
+{% endblock extra_css %}
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Detail</th>
-      <th scope="col">Number</th>
-      <th scope="col">Case type</th>
-      <th scope="col">Case status</th>
-      <th scope="col">Opened_at</th>
-      <th scope="col">Lawyer</th>
-      <th scope="col">Client</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for case in cases %}
-    <tr>
-      <th scope="row">{{ case.name }}</th>
-      <td>{{ case.detail }}</td>
-      <td>{{ case.number }}</td>
-      <td>{{ case.case_type }}</td>
-      <td>{{ case.case_status }}</td>
-      <td>{{ case.opened_at }}</td>
-      <td>{{ case.lawyer }}</td>
-      <td>{{ case.client }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-11 col-md-11 col-lg-8">
+    <h1 class="text-center">Cases</h1>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Number</th>
+          <th scope="col">Case type</th>
+          <th scope="col">Case status</th>
+          <th scope="col">Opened_at</th>
+          <th scope="col">Lawyer</th>
+          <th scope="col">Client</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for case in cases %}
+        <tr>
+          <th scope="row">{{ case.name }}</th>
+          <td>{{ case.detail }}</td>
+          <td>{{ case.number }}</td>
+          <td>{{ case.case_type }}</td>
+          <td>{{ case.case_status }}</td>
+          <td>{{ case.opened_at }}</td>
+          <td>{{ case.lawyer }}</td>
+          <td>{{ case.client }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock content %}
