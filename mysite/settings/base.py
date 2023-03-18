@@ -157,6 +157,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 # secret code created on account not password
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 
 # Redirect After Login and Logout

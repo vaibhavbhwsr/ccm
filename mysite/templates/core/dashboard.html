@@ -19,9 +19,9 @@
             <h3 class="card-title">Further Action Needed</h3>
             <hr>
             {% for case in cases %}
-            {% if case.case_status == "Further Action Needed" and case.lawyer == user %}
-            <h5 class="card-title">{{ forloop.counter }}. {{ case.name }}</h5>
-            <p class="card-text">{{ case.detail }}</p>
+                {% if case.case_status == "Further Action Needed" and case.lawyer == user %}
+                <h5 class="card-title">&#x2022; {{ case.name }}</h5>
+                <p class="card-text">{{ case.detail }}</p>
             {% endif %}
             {% endfor %}
           </div>
@@ -32,7 +32,7 @@
             <hr>
             {% for case in cases %}
             {% if case.case_status == "Processing" and case.lawyer == user %}
-            <h5 class="card-title">{{ forloop.counter }}. {{ case.name }}</h5>
+            <h5 class="card-title">&#x2022; {{ case.name }}</h5>
             <p class="card-text">{{ case.detail }}</p>
             {% endif %}
             {% endfor %}
@@ -40,11 +40,11 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">Disposition Date Set</h3>
+            <h3 class="card-title">Deposition Data Set</h3>
             <hr>
             {% for case in cases %}
-            {% if case.case_status == "Disposition Date Set" and case.lawyer == user %}
-            <h5 class="card-title">{{ case.name }}</h5>
+            {% if case.case_status == "Deposition Data Set" and case.lawyer == user %}
+            <h5 class="card-title">&#x2022; {{ case.name }}</h5>
             <p class="card-text">{{ case.detail }}</p>
             {% endif %}
             {% endfor %}
@@ -56,7 +56,7 @@
             <hr>
             {% for case in cases %}
             {% if case.case_status == "Trial date pending" and case.lawyer == user %}
-            <h5 class="card-title">{{ case.name }}</h5>
+            <h5 class="card-title">&#x2022; {{ case.name }}</h5>
             <p class="card-text">{{ case.detail }}</p>
             {% endif %}
             {% endfor %}

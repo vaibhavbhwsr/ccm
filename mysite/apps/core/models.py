@@ -29,6 +29,15 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    number = models.CharField(max_length=12)
+    about = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Case(BaseModel):
     CASE_TYPE = (
         ('Civil', 'Civil'),
@@ -50,12 +59,13 @@ class Case(BaseModel):
 
     name = models.CharField(max_length=225)
     detail = models.TextField()
-    number = models.IntegerField(unique=True)
+    number = models.CharField(max_length=12, unique=True)
     case_type = models.CharField(max_length=225, choices=CASE_TYPE)
     case_status = models.CharField(max_length=225, choices=CASE_STATUS)
     opened_at = models.DateField()
     lawyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lawyer_cases')
-    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_cases')
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_cases', null=True, blank=True)
+    contacts = models.ManyToManyField(Contact)
 
 
 class Invoice(BaseModel):

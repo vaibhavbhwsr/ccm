@@ -10,4 +10,5 @@ def get_cases_counts(client, user):
 
 @register.filter
 def get_client_total_bill(client, user):
-    return user.lawyer_cases.filter(client=client).count() * user.user_info.billing_rate
+    rate = user.user_info.billing_rate
+    return user.lawyer_cases.filter(client=client).count() * rate if rate else 0

@@ -10,7 +10,7 @@ class DateInput(forms.DateInput):
 class NewCaseForm(forms.ModelForm):
     class Meta:
         model = Case
-        fields = ['name', 'detail', 'number', 'case_type', 'case_status', 'opened_at', 'lawyer', 'client']
+        fields = ['name', 'detail', 'number', 'case_type', 'case_status', 'opened_at', 'lawyer', 'client', 'contacts']
         widgets = {
             'opened_at': DateInput(),
         }
